@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button>pa atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,9 +16,32 @@
   <div id="container">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle> SEX</ion-card-subtitle>
+        <ion-card-subtitle> GAY SEX</ion-card-subtitle>
         <ion-card-title> NIGG </ion-card-title>
       </ion-card-header>
     </ion-card>
   </div>
+
+  <ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-input label="Usuario" type="text" placeholder="Ingrese su usuario"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Contraseña" type="password" placeholder="Ingrese su contraseña"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Rut" type="number" placeholder="Ingrese su rut"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="text-align: start;">Tipo de usuario</ion-label>
+        <ion-select justify="space-between" value="optEduc" interface="action-sheet" placeholder="Seleccione nivel">
+          <ion-select-option value="Ninguno">Ninguno</ion-select-option>
+          <ion-select-option value="Estudiante">Estudiante</ion-select-option>
+          <ion-select-option value="Profesor">Profesor</ion-select-option>
+        </ion-select>
+
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
 </ion-content>
