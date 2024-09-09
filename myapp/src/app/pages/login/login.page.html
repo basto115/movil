@@ -17,7 +17,7 @@
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle> GAY SEX</ion-card-subtitle>
-        <ion-card-title> NIGG </ion-card-title>
+        <ion-card-title>  </ion-card-title>
       </ion-card-header>
     </ion-card>
   </div>
@@ -25,10 +25,14 @@
   <ion-card-content>
     <ion-list>
       <ion-item>
-        <ion-input label="Usuario" type="text" placeholder="Ingrese su usuario"></ion-input>
+        <ion-input [(ngModel)]="user.username" label="Usuario" 
+          labelPlacement="floating"
+          placeholder="Ingrese su usuario"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Contraseña" type="password" placeholder="Ingrese su contraseña"></ion-input>
+        <ion-input label="Contraseña" [(ngModel)]="user.password" 
+        type="password" labelPlacement="floating"
+        placeholder="Ingrese su contraseña"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input label="Rut" type="number" placeholder="Ingrese su rut"></ion-input>
@@ -40,8 +44,8 @@
           <ion-select-option value="Estudiante">Estudiante</ion-select-option>
           <ion-select-option value="Profesor">Profesor</ion-select-option>
         </ion-select>
-
       </ion-item>
     </ion-list>
+    <ion-button fill="outline" (click)="validar()">Conectar</ion-button>
   </ion-card-content>
 </ion-content>
