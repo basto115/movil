@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>contra</ion-title>
+    <ion-title>Recuperar contraseña</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +13,23 @@
       <ion-title size="large">contra</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-input type="password" label="Nueva contraseña" [(ngModel)]="user.password"
+        labelPlacement="floating" placeholder="Ingrese su nueva contraseña" >
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-input type="password" label="Confirmar contraseña" [(ngModel)]="user.pass2"
+        labelPlacement="floating" placeholder="Confirme su contraseña">
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button fill="outline" [routerLink]="['/login']">Recuperar</ion-button>
+  </ion-card-content>
 </ion-content>

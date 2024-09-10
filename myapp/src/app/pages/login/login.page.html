@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Login</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +17,7 @@
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Inicio de sesion</ion-card-subtitle>
-        <ion-card-title>  </ion-card-title>
+        <ion-card-title> </ion-card-title>
       </ion-card-header>
     </ion-card>
   </div>
@@ -30,9 +30,10 @@
           placeholder="Ingrese su usuario"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Contraseña" [(ngModel)]="user.password" 
-        type="password" labelPlacement="floating"
-        placeholder="Ingrese su contraseña"></ion-input>
+        <ion-input type="password" label="Contraseña" [(ngModel)]="user.password"
+        labelPlacement="floating" placeholder="Ingrese su contraseña" >
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
       </ion-item>
       <ion-item>
         <ion-input label="Rut" type="number" placeholder="Ingrese su rut"></ion-input>
@@ -48,11 +49,11 @@
     </ion-list>
     <div *ngIf="burbuja">
       <ion-item>
-        <ion-label>Iniciando sesion</ion-label>
+        <ion-label>Conectando</ion-label>
         <ion-spinner name="bubbles"></ion-spinner>
       </ion-item>
     </div>
     <ion-button fill="outline" (click)="validar()">Conectar</ion-button>
-    <ion-button fill="outline" [routerLink]="['/contra']">Reecuperar contraseña</ion-button>
+    <ion-button fill="outline" [routerLink]="['/contra']">Olvidaste tu contraseña?</ion-button>
   </ion-card-content>
 </ion-content>

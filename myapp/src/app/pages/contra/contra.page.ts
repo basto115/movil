@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContraPage implements OnInit {
 
+  user = {
+    username: '',
+    password: '',
+    pass2: '',
+  };
+
   constructor() { }
 
   ngOnInit() {
