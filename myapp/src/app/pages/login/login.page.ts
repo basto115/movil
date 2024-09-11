@@ -10,18 +10,24 @@ import { NavigationExtras, Router } from '@angular/router';
 
 export class LoginPage implements OnInit {
 
-  user = {
-    username: '',
-    password: '',
+  user: {
+    username: string,
+    password: string
   };
 
   burbuja = false;
+  
   
   cambiarSpin(){
     this.burbuja = !this.burbuja
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    this.user = {
+      username: '',
+      password: ''
+    }
+  }
 
   ngOnInit() {
   }
@@ -44,7 +50,7 @@ export class LoginPage implements OnInit {
     let navigationExtras: NavigationExtras = {
       state: {
         user: this.user.username,
-        pass: this.user.password,
+        pass: this.user.password
       }
     };
   
