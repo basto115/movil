@@ -10,7 +10,7 @@ import { NavigationExtras, Router } from '@angular/router';
 
 export class LoginPage implements OnInit {
 
-  user: {
+  user : {
     username: string,
     password: string
   };

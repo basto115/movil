@@ -13,12 +13,12 @@ export class InicioPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    // Obtener los datos pasados desde la página anterior
+    
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras?.state;
 
     if (state) {
-      this.user = state['user'];  // Guardar el nombre de usuario
+      this.user = state['user'];  
     }
   }
 
