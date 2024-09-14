@@ -2,15 +2,15 @@
 
 .contenedor {
     display: flex;
-    justify-content: center; /* Centra la imagen horizontalmente */
-    align-items: center; /* Centra la imagen verticalmente */
-    height: 12vh; /* Ajusta la altura del contenedor si es necesario */
+    justify-content: center; 
+    align-items: center; 
+    height: 12vh; 
   }
   
-  .logo {
-    width: 100px; /* Ajusta el tamaño de la imagen */
-    height: 100px; /* Asegúrate de que el ancho y el alto sean iguales */
-    border-radius: 50%; /* Hace que la imagen sea redonda */
-    object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+  .foto {
+    width:90px; 
+    height: 90px; 
+    border-radius: 50%; 
+    object-fit: cover; 
   }
   
