@@ -27,6 +27,10 @@ const routes: Routes = [
     path: '**',
     loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
   },
+  {
+    path: 'controller',
+    loadChildren: () => import('./admin/controller/controller.module').then( m => m.ControllerPageModule)
+  },
 ];
 
 @NgModule({
