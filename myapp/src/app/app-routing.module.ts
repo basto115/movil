@@ -23,6 +23,14 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
+  {
+    path: 'error',
+    loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
+  },
+  {
+    path: 'error',
+    loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
+  },
 ];
 
 @NgModule({
