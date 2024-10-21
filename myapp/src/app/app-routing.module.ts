@@ -24,11 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
-    path: 'error',
-    loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
-  },
-  {
-    path: 'error',
+    path: '**',
     loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
   },
 ];
