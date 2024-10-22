@@ -42,18 +42,7 @@
   border-radius: 50%; 
   object-fit: cover; 
   box-shadow: 0px 9px 15px rgb(226, 81, 13); 
-  animation: moverCircular 3s linear infinite; 
 }
-
-@keyframes moverCircular {
-  0% {
-    transform: rotate(0deg) translateX(15px) rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg) translateX(15px) rotate(-360deg); 
-  }
-}
-
 
 .botoniniciar {
   --background: transparent; 
