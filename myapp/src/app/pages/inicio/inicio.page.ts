@@ -21,5 +21,5 @@ export class InicioPage implements OnInit {
       this.user = state['user'];  
     }
   }
-
+ 
 }
