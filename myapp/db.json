@@ -1,19 +1,20 @@
 {
-  "posts": [
+  "users": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "username": "tyler",
+      "email": "correo@correo.cl",
+      "password": "pass1234"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "username": "galactus",
+      "email": "email@gmail.com",
+      "password": "password1234"
+    },
+    {
+      "username": "d.prueba",
+      "email": "prueba@hotmail.com",
+      "password": "contraseña"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
+  
