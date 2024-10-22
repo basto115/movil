@@ -24,12 +24,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
-    path: 'error',
+    path: '**',
     loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
   },
   {
-    path: 'error',
-    loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
+    path: 'controller',
+    loadChildren: () => import('./admin/controller/controller.module').then( m => m.ControllerPageModule)
   },
 ];
 
