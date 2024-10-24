@@ -19,7 +19,9 @@
         <p>para ir al admin aprete el gato</p>
         <ion-card-subtitle> MiauApp</ion-card-subtitle>
         <div class="contenedor">
-          <img src="./assets/imgs/gatosamurai.jpg" alt="" class="logo" [routerLink]="['/controller']">
+          <ion-router-link [routerLink]="['/controller']">
+            <img src="./assets/imgs/gatosamurai.jpg" alt="Gato Samurai" class="logo">
+          </ion-router-link>
         </div>
         <ion-card-title> </ion-card-title>
       </ion-card-header>
