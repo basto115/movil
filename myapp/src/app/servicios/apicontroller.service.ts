@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class APIControllerService {
 
     /* Configuramos URL de nuestar API a consumir */
-    apiURL = "http://localhost:3000";
+    apiURL = "http://localhost:8100";
 
     constructor(private http: HttpClient) { }
     /* Cada funcion que realizaremos de la linea API Consume esta ligada a uyna llamada HTTP
