@@ -1,67 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { AuthenticatorService } from 'src/app/servicios/authenticator.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-registro',
+  selector: 'app-register',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegisterPage implements OnInit {
 
-  user = {
-    username: '',
-    email: '',
-    password: '',
-  };
-  burbuja = false;
+  registerForm!: FormGroup;
 
-  constructor(
-    private auth: AuthenticatorService,
-    private router: Router,
-    private toastController: ToastController
-  ) {}
+  constructor(private formBuilder: FormBuilder, private navCtrl: NavController) { }
 
-  ngOnInit() {}
-
-  async registrar() {
-    if (this.user.username && this.user.email && this.user.password) {
-      this.burbuja = true; // Muestra la burbuja de "cargando"
-
-      this.auth
-        .registrar(this.user)
-        .then((res) => {
-          this.burbuja = false; // Oculta la burbuja
-          this.router.navigate(['/home']);
-          return this.toastController.create({
-            message: 'Registrado con éxito',
-            duration: 5000,
-            position: 'bottom',
-          });
-        })
-        .then((toast) => toast.present())
-        .catch((error) => {
-          this.burbuja = false; // Oculta la burbuja en caso de error
-          return this.toastController
-            .create({
-              message: 'Error al registrar',
-              duration: 5000,
-              position: 'bottom',
-            })
-            .then((toast) => toast.present());
-        });
-    } else {
-      // Muestra mensaje si faltan datos
-      this.toastController
-        .create({
-          message: 'Por favor completa todos los campos',
-          duration: 5000,
-          position: 'bottom',
-        })
-        .then((toast) => toast.present());
-    }
+  ngOnInit() {
+    // Inicializamos el formulario
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
+  // Método que se ejecuta al enviar el formulario
+  onSubmit() {
+    if (this.registerForm.valid) {
+      const formData = this.registerForm.value;
 
+      // Guardar los datos en localStorage
+      localStorage.setItem('userData', JSON.stringify(formData));
+
+      // Aquí puedes redirigir al usuario o mostrar un mensaje de éxito
+      console.log('Datos guardados en localStorage:', formData);
+      alert('¡Registro exitoso! Datos guardados en localStorage.');
+
+      // Ejemplo de redirección a otra página después de registrarse
+      this.navCtrl.navigateRoot('/home');
+    } else {
+      alert('Por favor, complete todos los campos correctamente.');
+    }
+  }
 }
