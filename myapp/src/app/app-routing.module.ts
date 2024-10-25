@@ -28,8 +28,8 @@ const routes: Routes = [
     loadChildren: () => import('./admin/controller/controller.module').then( m => m.ControllerPageModule)
   },
   {
-    path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegisterPageModule)
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: '**',
