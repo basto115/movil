@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-/*import { ControllerPage } from './controller.page';*/
-/*
+import { ControllerPage } from './controller.page';
+
 describe('ControllerPage', () => {
   let component: ControllerPage;
   let fixture: ComponentFixture<ControllerPage>;
 
   beforeEach(() => {
-    /*fixture = TestBed.createComponent(ControllerPage);
+    fixture = TestBed.createComponent(ControllerPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -14,4 +14,4 @@ describe('ControllerPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});*/
+});

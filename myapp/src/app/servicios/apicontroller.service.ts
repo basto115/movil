@@ -7,28 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class APIControllerService {
 
-<<<<<<< HEAD
+
    
   apiURL = "http://localhost:8100";
-=======
-    /* Configuramos URL de nuestar API a consumir */
-    apiURL = "http://localhost:8100";
->>>>>>> parent of 0351f4f (el fokin gato)
+
 
     constructor(private http: HttpClient) { }
-    /* Cada funcion que realizaremos de la linea API Consume esta ligada a uyna llamada HTTP
-      GET = Obtener datos
-      POST = insertar Datos
-      PUT = Actualizar datos
-      DELETE = eliminar datos
-  
-      Cada llamada realizada retorna un objeto de tipo Observable
-      El observable es una representacion de datos que llega de forma asincrona , similar a la promise
-      Este tipo de Dato o retorno puede funcionar como no funcionar , 
-      pero sus respuestas estan mas ligadas a los codigos de estado de respuesta HTTP
-      dando respuestas de la linea 200-300 como positivos y 400-500 en caso de errores 
-  
-    *//*
+   
     getUsers(): Observable<any> {
       return this.http.get(this.apiURL + "/users");
     }
@@ -40,5 +25,5 @@ export class APIControllerService {
     }
     deleteUser(id: string): Observable<any> {
       return this.http.delete(this.apiURL + "/users/" + id);
-    }*/
+    }
 }

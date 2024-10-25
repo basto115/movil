@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-/*
-import { ControllerPage } from './controller.page';*/
+
+import { ControllerPage } from './controller.page';
 
 const routes: Routes = [
   {
@@ -9,6 +9,7 @@ const routes: Routes = [
     
   }
 ];
+component: ControllerPage
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

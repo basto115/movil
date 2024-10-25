@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIControllerService } from 'src/app/servicios/apicontroller.service';
-/*
+
 @Component({
   selector: 'app-controller',
   templateUrl: './controller.page.html',
@@ -32,4 +32,4 @@ export class ControllerPage implements OnInit {
   eliminarUsuario(id: any) {
 
   }
-}*/
+}
