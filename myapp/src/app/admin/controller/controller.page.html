@@ -48,7 +48,7 @@
                 </ion-button>
               </ion-col>
             </ion-row>
-            
+            <ion-spinner *ngIf="users.length === 0"></ion-spinner>
           </ion-grid>
         </ion-list>
       </ion-card-content>

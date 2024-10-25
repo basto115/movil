@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { APIControllerService } from 'src/app/servicios/apicontroller.service';
-
+/*
 @Component({
   selector: 'app-controller',
   templateUrl: './controller.page.html',
   styleUrls: ['./controller.page.scss'],
 })
+
 export class ControllerPage implements OnInit {
 
   users: any[] = [];
   constructor(private api: APIControllerService) { }
-
+ 
   ngOnInit() {
     this.cargarUsuarios();
   }
-  
+ 
   cargarUsuarios() {
     this.api.getUsers().subscribe(
       (data) => {
@@ -31,4 +32,4 @@ export class ControllerPage implements OnInit {
   eliminarUsuario(id: any) {
 
   }
-}
+}*/
