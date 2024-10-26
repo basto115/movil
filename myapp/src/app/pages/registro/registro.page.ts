@@ -14,6 +14,8 @@ export class RegistroPage implements OnInit {
     username: '',
     email: '',
     password: '',
+    fecha_nacimiento: '',
+    rut: ''
   };
   burbuja = false;
 
@@ -26,7 +28,8 @@ export class RegistroPage implements OnInit {
   ngOnInit() {}
 
   async registrar() {
-    if (this.user.username && this.user.email && this.user.password) {
+    // Validación para asegurar que todos los campos estén completos
+    if (this.user.username && this.user.email && this.user.password && this.user.fecha_nacimiento && this.user.rut) {
       this.burbuja = true; // Muestra la burbuja de "cargando"
 
       this.auth
@@ -62,6 +65,4 @@ export class RegistroPage implements OnInit {
         .then((toast) => toast.present());
     }
   }
-
-
 }
