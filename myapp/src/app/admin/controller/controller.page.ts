@@ -26,10 +26,28 @@ export class ControllerPage implements OnInit {
         console.log("Error en la llamada :" + error)
       });
   }
-  modificarUsuario(id: any) {
-
+  modificarUsuario(id: any, usuarioActualizado: any) {
+    this.api.updateUser(id, usuarioActualizado).subscribe(
+      (data): void => {
+        console.log("Usuario modificado exitosamente:", data);
+        
+        this.cargarUsuarios();
+      },
+      (error) => {
+        console.error("Error al modificar el usuario:", error.message ? error.message : error);
+      }
+    );
   }
   eliminarUsuario(id: any) {
-
+    this.api.deleteUser(id).subscribe(
+      (data) => {
+        console.log("Usuario eliminado exitosamente:", data);
+        
+        this.cargarUsuarios(); 
+      },
+      (error) => {
+        console.error("Error al eliminar el usuario:", error.message ? error.message : error);
+      }
+    );
   }
 }

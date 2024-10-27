@@ -37,13 +37,13 @@
               <ion-col>{{user.username}}</ion-col>
               <ion-col>{{user.email}}</ion-col>
               <ion-col>{{user.password}}</ion-col>
-              <ion-col (click)="modificarUsuario(user.id)">
+              <ion-col (click)="modificarUsuario(user.id,  { name: user.username, email: user.email, pass: user.password })">
                 <ion-button fill="outline" size="small">
                   Modificar
                 </ion-button>
               </ion-col>
               <ion-col (click)="eliminarUsuario(user.id)">
-                <ion-button fill="outline" size="small">
+                <ion-button color="danger" fill="outline" size="small">
                   Eliminar
                 </ion-button>
               </ion-col>

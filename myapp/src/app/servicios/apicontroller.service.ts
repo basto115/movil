@@ -6,14 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class APIControllerService {
+  modificarUsuario(id: any, usuarioActualizado: any) {
+    throw new Error('Method not implemented.');
+  }
 
-   
   apiURL = "http://localhost:8100";
 
   constructor(private http: HttpClient) { }
   
   getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiURL}/users`);
+    return this.http.get<any[]>('http://localhost:8100/users');
   }
   
   postUser(data: any): Observable<any> {
