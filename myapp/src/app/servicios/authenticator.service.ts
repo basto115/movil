@@ -11,7 +11,7 @@ export class AuthenticatorService {
 
   async loginBDD(user: string, pass: string): Promise<boolean> {
     try {
-      console.log('Intentando autenticación...'); // Log para saber que `loginBDD` se ejecuta
+      console.log('Intentando autenticación...');
       const res = await this.storage.get(user);
       if (res && res.password === pass) {
         this.connectionStatus = true;
