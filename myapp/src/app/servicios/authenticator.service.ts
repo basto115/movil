@@ -9,7 +9,6 @@ export class AuthenticatorService {
 
   constructor(private storage: StorageService) {}
 
-  // Iniciar sesión utilizando credenciales almacenadas en la base de datos (BDD)
   async loginBDD(user: string, pass: string): Promise<boolean> {
     try {
       console.log('Intentando autenticación...'); // Log para saber que `loginBDD` se ejecuta
@@ -30,17 +29,14 @@ export class AuthenticatorService {
     }
   }
 
-  // Cerrar sesión
   logout(): void {
     this.connectionStatus = false;
   }
 
-  // Consultar el estado de conexión
   isConnected(): boolean {
     return this.connectionStatus;
   }
 
-  // Registrar un nuevo usuario en la base de datos (BDD)
   async registrar(user: { username: string; password: string }): Promise<boolean> {
     try {
       const res = await this.storage.set(user.username, user);
