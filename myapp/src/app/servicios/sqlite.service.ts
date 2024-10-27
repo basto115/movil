@@ -10,16 +10,17 @@ export class DatabaseService {
   constructor(private sqlite: SQLite) {}
 
   
-  initDB() {
-    return this.sqlite.create({
-      name: 'data.db',
-      location: 'default',
-    })
-    .then((db: SQLiteObject) => {
+  async initDB() {
+    try {
+      const db = await this.sqlite.create({
+        name: 'data.db',
+        location: 'default',
+      });
       this.database = db;
-      return this.createTables();
-    })
-    .catch(e => console.error('Error creando la base de datos', e));
+      return await this.createTables();
+    } catch (e) {
+      return console.error('Error creando la base de datos', e);
+    }
   }
 
   
