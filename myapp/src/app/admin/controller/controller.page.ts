@@ -22,7 +22,7 @@ export class ControllerPage implements OnInit {
       const data = await firstValueFrom(this.api.getUsers());
       this.users = data;
       console.log(this.users);
-    } catch (error: any) {  // Declaramos el tipo 'any' para acceder a las propiedades del error
+    } catch (error: any) {  
       console.error("Error en la llamada:", error.message ? error.message : error);
     }
   }
@@ -32,8 +32,8 @@ export class ControllerPage implements OnInit {
       const data = await firstValueFrom(this.api.updateUser(id, usuarioActualizado));
       console.log("Usuario modificado exitosamente:", data);
       
-      await this.cargarUsuarios(); // Refresca la lista de usuarios después de modificar
-    } catch (error: any) {  // Declaramos el tipo 'any' para acceder a las propiedades del error
+      await this.cargarUsuarios(); 
+    } catch (error: any) {  
       console.error("Error al modificar el usuario:", error.message ? error.message : error);
     }
   }
@@ -43,8 +43,8 @@ export class ControllerPage implements OnInit {
       const data = await firstValueFrom(this.api.deleteUser(id));
       console.log("Usuario eliminado exitosamente:", data);
       
-      await this.cargarUsuarios(); // Refresca la lista de usuarios después de eliminar
-    } catch (error: any) {  // Declaramos el tipo 'any' para acceder a las propiedades del error
+      await this.cargarUsuarios(); 
+    } catch (error: any) {  
       console.error("Error al eliminar el usuario:", error.message ? error.message : error);
     }
   }
