@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIControllerService } from 'src/app/servicios/apicontroller.service';
-
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-controller',
@@ -10,44 +10,42 @@ import { APIControllerService } from 'src/app/servicios/apicontroller.service';
 export class ControllerPage implements OnInit {
 
   users: any[] = [];
+  
   constructor(private api: APIControllerService) { }
 
   ngOnInit() {
     this.cargarUsuarios();
   }
-  
-  cargarUsuarios() {
-    this.api.getUsers().subscribe(
-      (data) => {
-        this.users = data
-        console.log(this.users)
-      },
-      (error) => {
-        console.log("Error en la llamada :" + error)
-      });
+
+  async cargarUsuarios() {
+    try {
+      const data = await firstValueFrom(this.api.getUsers());
+      this.users = data;
+      console.log(this.users);
+    } catch (error: any) {  // Declaramos el tipo 'any' para acceder a las propiedades del error
+      console.error("Error en la llamada:", error.message ? error.message : error);
+    }
   }
-  modificarUsuario(id: any, usuarioActualizado: any) {
-    this.api.updateUser(id, usuarioActualizado).subscribe(
-      (data): void => {
-        console.log("Usuario modificado exitosamente:", data);
-        
-        this.cargarUsuarios();
-      },
-      (error) => {
-        console.error("Error al modificar el usuario:", error.message ? error.message : error);
-      }
-    );
+
+  async modificarUsuario(id: any, usuarioActualizado: any) {
+    try {
+      const data = await firstValueFrom(this.api.updateUser(id, usuarioActualizado));
+      console.log("Usuario modificado exitosamente:", data);
+      
+      await this.cargarUsuarios(); // Refresca la lista de usuarios después de modificar
+    } catch (error: any) {  // Declaramos el tipo 'any' para acceder a las propiedades del error
+      console.error("Error al modificar el usuario:", error.message ? error.message : error);
+    }
   }
-  eliminarUsuario(id: any) {
-    this.api.deleteUser(id).subscribe(
-      (data) => {
-        console.log("Usuario eliminado exitosamente:", data);
-        
-        this.cargarUsuarios(); 
-      },
-      (error) => {
-        console.error("Error al eliminar el usuario:", error.message ? error.message : error);
-      }
-    );
+
+  async eliminarUsuario(id: any) {
+    try {
+      const data = await firstValueFrom(this.api.deleteUser(id));
+      console.log("Usuario eliminado exitosamente:", data);
+      
+      await this.cargarUsuarios(); // Refresca la lista de usuarios después de eliminar
+    } catch (error: any) {  // Declaramos el tipo 'any' para acceder a las propiedades del error
+      console.error("Error al eliminar el usuario:", error.message ? error.message : error);
+    }
   }
 }
