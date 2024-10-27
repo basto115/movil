@@ -28,16 +28,20 @@ export class DatabaseService {
     return this.database.executeSql(
       `CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        email TEXT
+        username TEXT,
+        email TEXT,
+        password TEXT,
+        fecha_nacimiento TEXT,
+        rut TEXT
       );`, []
     );
   }
 
   
-  addUser(name: string, email: string) {
+  addUser(username: string, email: string, password: string, fechaNacimiento: string, rut: string) {
     return this.database.executeSql(
-      `INSERT INTO users (name, email) VALUES (?, ?)`, [name, email]
+      `INSERT INTO users (username, email, password, fecha_nacimiento, rut) VALUES (?, ?, ?, ?, ?)`, 
+      [username, email, password, fechaNacimiento, rut]
     );
   }
 
