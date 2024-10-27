@@ -22,7 +22,7 @@
 
       <ion-card-content>
         <ion-list>
-          <!-- Nombre de usuario -->
+          
           <ion-item>
             <ion-input
               [(ngModel)]="user.username"
@@ -32,7 +32,6 @@
             </ion-input>
           </ion-item>
 
-          <!-- Correo electrónico -->
           <ion-item>
             <ion-input
               [(ngModel)]="user.email"
@@ -42,7 +41,6 @@
             </ion-input>
           </ion-item>
 
-          <!-- Contraseña -->
           <ion-item>
             <ion-input
               type="password"
@@ -54,7 +52,6 @@
             </ion-input>
           </ion-item>
 
-          <!-- Fecha de nacimiento -->
           <ion-item>
             <ion-input
               [(ngModel)]="user.fecha_nacimiento"
@@ -64,7 +61,6 @@
             </ion-input>
           </ion-item>
 
-          <!-- RUT (formato chileno) -->
           <ion-item>
             <ion-input
               [(ngModel)]="user.rut"
@@ -75,7 +71,6 @@
           </ion-item>
         </ion-list>
 
-        <!-- Indicador de carga -->
         <div *ngIf="burbuja">
           <ion-item>
             <ion-label>Registrando</ion-label>
@@ -83,7 +78,6 @@
           </ion-item>
         </div>
 
-        <!-- Botón para registrar -->
         <ion-button
           class="btnregistrar"
           fill="outline"
