@@ -11,28 +11,28 @@ export class StorageService {
     this.init();
   }
 
-  // Inicializa el Storage
+
   async init() {
     const storage = await this.storage.create();
     this._storage = storage;
   }
 
-  // Guarda un valor
+
   async set(key: string, value: any) {
     await this._storage?.set(key, value);
   }
 
-  // Obtiene un valor
+
   async get(key: string): Promise<any> {
     return await this._storage?.get(key);
   }
 
-  // Elimina un valor
+
   async remove(key: string) {
     await this._storage?.remove(key);
   }
 
-  // Limpia todo el storage
+  
   async clear() {
     await this._storage?.clear();
   }

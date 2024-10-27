@@ -17,6 +17,10 @@ export class ControllerPage implements OnInit {
     this.cargarUsuarios();
   }
 
+  async agregarUsuario(){
+
+  }
+
   async cargarUsuarios() {
     try {
       const data = await firstValueFrom(this.api.getUsers());
