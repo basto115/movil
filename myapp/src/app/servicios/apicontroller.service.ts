@@ -1,32 +1,29 @@
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Optional } from '@angular/core';
+import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class APIControllerService {
-  modificarUsuario(id: any, usuarioActualizado: any) {
-    throw new Error('Method not implemented.');
+  private apiUrl = 'http://localhost:8100/'; 
+  constructor(private http: HttpClient) {}
+
+  async loadUsers(): Promise<User[]> {
+    const users = await this.http.get<User[]>(`${this.apiUrl}/users`).toPromise();
+    return users || []; 
   }
 
-  apiURL = "http://localhost:8100";
+  addUser(username: string, email: string, password: string, fechaNacimiento: string, rut: string): Promise<void> {
+    return this.http.post<void>(`${this.apiUrl}/users`, { username, email, password, fechaNacimiento, rut }).toPromise();
+  }
 
-  constructor(private http: HttpClient) { }
-  
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8100/users');
+  modifyUser(id: number, username: string, email: string, password: string, fechaNacimiento: string, rut: string): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/users/${id}`, { username, email, password, fechaNacimiento, rut });
   }
-  
-  postUser(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiURL}/users`, data);
-  }
-  
-  updateUser(id: string, data: any): Observable<any> {
-    return this.http.put<any>(`${this.apiURL}/users/${id}`, data);
-  }
-  
-  deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiURL}/users/${id}`);
+
+  deleteUser(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.apiUrl}/users/${id}`).toPromise();
   }
 }

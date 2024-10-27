@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
+import { User } from '../models/user.model';
+
 
 @Injectable({
   providedIn: 'root',
@@ -7,8 +9,21 @@ import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 export class DatabaseService {
   private database!: SQLiteObject;
 
-  constructor(private sqlite: SQLite) {}
+  constructor(private sqlite: SQLite) {
+    this.initDB
+  }
 
+  async createDatabase() {
+    try {
+      this.database = await this.sqlite.create({
+        name: 'mydatabase.db',
+        location: 'default',
+      });
+      await this.createTables(); 
+    } catch (error) {
+      console.error('Error creating database:', error);
+    }
+  }
   
   async initDB() {
     try {
@@ -40,19 +55,18 @@ export class DatabaseService {
   
   addUser(username: string, email: string, password: string, fechaNacimiento: string, rut: string) {
     return this.database.executeSql(
-      `INSERT INTO users (username, email, password, fecha_nacimiento, rut) VALUES (?, ?, ?, ?, ?)`, 
+      `INSERT INTO users (username, email, password, fechaNacimiento, rut) VALUES (?, ?, ?, ?, ?)`, 
       [username, email, password, fechaNacimiento, rut]
     );
   }
 
   
-  getUsers() {
-    return this.database.executeSql(`SELECT * FROM users`, []).then(data => {
-      const users = [];
-      for (let i = 0; i < data.rows.length; i++) {
-        users.push(data.rows.item(i));
-      }
-      return users;
-    });
+  async getUsers(): Promise<User[]> {
+    const data = await this.database.executeSql(`SELECT * FROM users`, []);
+    const users: User[] = []; 
+    for (let i = 0; i < data.rows.length; i++) {
+      users.push(data.rows.item(i)); 
+    }
+    return users;
   }
 }

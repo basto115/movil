@@ -1,55 +1,52 @@
+import { DatabaseService } from './../../servicios/sqlite.service';
 import { Component, OnInit } from '@angular/core';
 import { APIControllerService } from 'src/app/servicios/apicontroller.service';
+import { User } from 'src/app/models/user.model';
 import { firstValueFrom } from 'rxjs';
+
 
 @Component({
   selector: 'app-controller',
   templateUrl: './controller.page.html',
   styleUrls: ['./controller.page.scss'],
 })
-export class ControllerPage implements OnInit {
+export class ControllerPage {
+  users: User[] = [];
 
-  users: any[] = [];
-  
-  constructor(private api: APIControllerService) { }
+  constructor(private APIControllerService: APIControllerService, DatabaseServicece : DatabaseService) {}
 
-  ngOnInit() {
-    this.cargarUsuarios();
+  ionViewDidEnter() {
+    this.loadUsers(); 
   }
 
-  async agregarUsuario(){
-
+  loadUsers() {
+    this.APIControllerService.loadUsers().then(data => {
+      this.users = data; 
+    });
   }
 
-  async cargarUsuarios() {
-    try {
-      const data = await firstValueFrom(this.api.getUsers());
-      this.users = data;
-      console.log(this.users);
-    } catch (error: any) {  
-      console.error("Error en la llamada:", error.message ? error.message : error);
-    }
+  addUser() {
+    this.APIControllerService.addUser('', '', '','','').then(() => {
+      this.loadUsers(); 
+    });
   }
 
-  async modificarUsuario(id: any, usuarioActualizado: any) {
-    try {
-      const data = await firstValueFrom(this.api.updateUser(id, usuarioActualizado));
-      console.log("Usuario modificado exitosamente:", data);
-      
-      await this.cargarUsuarios(); 
-    } catch (error: any) {  
-      console.error("Error al modificar el usuario:", error.message ? error.message : error);
-    }
+  modificarUsuario(id: number, username: string, email: string, password: string, fechaNacimiento: string, rut: string) {
+    this.APIControllerService.modifyUser(id, username, email, password, fechaNacimiento, rut)
+      .subscribe(() => {
+        this.loadUsers();
+      }, error => {
+        console.error('Error al modificar el usuario:', error);
+      });
   }
 
-  async eliminarUsuario(id: any) {
-    try {
-      const data = await firstValueFrom(this.api.deleteUser(id));
-      console.log("Usuario eliminado exitosamente:", data);
-      
-      await this.cargarUsuarios(); 
-    } catch (error: any) {  
-      console.error("Error al eliminar el usuario:", error.message ? error.message : error);
-    }
+  eliminarUsuario(userId: number) {
+    this.APIControllerService.deleteUser(userId)
+      .then(() => {
+        this.loadUsers(); 
+      })
+      .catch(error => {
+        console.error('Error al eliminar el usuario:', error);
+      });
   }
 }

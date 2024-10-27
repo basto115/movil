@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthenticatorService } from 'src/app/servicios/authenticator.service';
-import { StorageService } from 'src/app/servicios/storage.service'; // Importar el servicio Storage
+import { StorageService } from 'src/app/servicios/storage.service'; 
 
 @Component({
   selector: 'app-registro',
@@ -15,38 +15,38 @@ export class RegistroPage implements OnInit {
     email: '',
     password: '',
     fecha_nacimiento: '',
-    rut: '', // Incluimos RUT
+    rut: '', 
   };
 
-  burbuja = false; // Indicador de carga
+  burbuja = false; 
 
   constructor(
     private auth: AuthenticatorService,
     private router: Router,
     private toastController: ToastController,
-    private storageService: StorageService // Inyectar el servicio Storage
+    private storageService: StorageService 
   ) {}
 
   ngOnInit() {}
 
-  // Método para registrar al usuario
+  
   async registrar() {
     const { username, email, password, fecha_nacimiento, rut } = this.user;
 
     if (username && email && password && fecha_nacimiento && rut) {
-      this.burbuja = true; // Mostrar la burbuja de carga
+      this.burbuja = true; 
 
       try {
-        // Registrar al usuario mediante el servicio de autenticación
+        
         const res = await this.auth.registrar(this.user);
 
-        // Guardar la información del usuario en el Storage local
+        
         await this.storageService.set('usuario', this.user);
 
-        this.burbuja = false; // Ocultar la burbuja de carga
-        this.router.navigate(['/home']); // Redirigir a la página de inicio
+        this.burbuja = false; 
+        this.router.navigate(['/home']); 
 
-        // Mostrar un mensaje de éxito
+        
         const toast = await this.toastController.create({
           message: 'Registrado con éxito',
           duration: 5000,
@@ -54,7 +54,7 @@ export class RegistroPage implements OnInit {
         });
         toast.present();
       } catch (error) {
-        this.burbuja = false; // Ocultar la burbuja en caso de error
+        this.burbuja = false; 
 
         const toast = await this.toastController.create({
           message: 'Error al registrar',
@@ -64,7 +64,7 @@ export class RegistroPage implements OnInit {
         toast.present();
       }
     } else {
-      // Mostrar mensaje si faltan campos
+      
       const toast = await this.toastController.create({
         message: 'Por favor completa todos los campos',
         duration: 5000,
