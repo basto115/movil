@@ -7,23 +7,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class APIControllerService {
-  private apiUrl = 'http://localhost:8100/'; 
+  private baseUrl: string = 'http:/localhost:8100'; 
   constructor(private http: HttpClient) {}
 
   async loadUsers(): Promise<User[]> {
-    const users = await this.http.get<User[]>(`${this.apiUrl}/users`).toPromise();
+    const users = await this.http.get<User[]>(`${this.baseUrl}/users`).toPromise();
     return users || []; 
   }
 
   addUser(username: string, email: string, password: string, fechaNacimiento: string, rut: string): Promise<void> {
-    return this.http.post<void>(`${this.apiUrl}/users`, { username, email, password, fechaNacimiento, rut }).toPromise();
+    return this.http.post<void>(`${this.baseUrl}/users`, { username, email, password, fechaNacimiento, rut }).toPromise();
   }
 
   modifyUser(id: number, username: string, email: string, password: string, fechaNacimiento: string, rut: string): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/users/${id}`, { username, email, password, fechaNacimiento, rut });
+    return this.http.put<void>(`${this.baseUrl}/users/${id}`, { username, email, password, fechaNacimiento, rut });
   }
 
   deleteUser(id: number): Promise<void> {
-    return this.http.delete<void>(`${this.apiUrl}/users/${id}`).toPromise();
+    return this.http.delete<void>(`${this.baseUrl}/users/${id}`).toPromise();
   }
 }
