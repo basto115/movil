@@ -21,7 +21,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <!-- Formulario agrupado -->
+        
         <form (ngSubmit)="registrar()" #formRegistro="ngForm">
 
           <ion-list>
@@ -93,11 +93,10 @@
           </div>
 
           <ion-button
-            class="btnregistrar"
-            fill="outline"
-            type="submit"
-            [disabled]="formRegistro.invalid">
-            Registrar
+          class="btnregistrar"
+          fill="outline"
+          (click)="registrar()">
+          Registrar
           </ion-button>
 
         </form>
