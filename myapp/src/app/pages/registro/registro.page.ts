@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthenticatorService } from 'src/app/servicios/authenticator.service';
-import { StorageService } from 'src/app/servicios/storage.service'; 
+import { StorageService } from 'src/app/servicios/storage.service';
 
 @Component({
   selector: 'app-registro',
@@ -15,21 +15,20 @@ export class RegistroPage implements OnInit {
     email: '',
     password: '',
     fecha_nacimiento: '',
-    rut: '', 
+    rut: '',
   };
 
-  burbuja = false; 
+  burbuja = false;
 
   constructor(
     private auth: AuthenticatorService,
     private router: Router,
     private toastController: ToastController,
-    private storageService: StorageService 
+    private storageService: StorageService
   ) {}
 
   ngOnInit() {}
 
-  
   async registrar() {
     const { username, email, password, fecha_nacimiento, rut } = this.user;
 
@@ -46,7 +45,7 @@ export class RegistroPage implements OnInit {
         this.burbuja = false; 
         this.router.navigate(['/home']); 
 
-        
+ 
         const toast = await this.toastController.create({
           message: 'Registrado con éxito',
           duration: 5000,
@@ -56,6 +55,7 @@ export class RegistroPage implements OnInit {
       } catch (error) {
         this.burbuja = false; 
 
+
         const toast = await this.toastController.create({
           message: 'Error al registrar',
           duration: 5000,
@@ -64,7 +64,7 @@ export class RegistroPage implements OnInit {
         toast.present();
       }
     } else {
-      
+
       const toast = await this.toastController.create({
         message: 'Por favor completa todos los campos',
         duration: 5000,

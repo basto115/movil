@@ -21,69 +21,86 @@
       </ion-card-header>
 
       <ion-card-content>
-        <ion-list>
-          
-          <ion-item>
-            <ion-input
-              [(ngModel)]="user.username"
-              label="Usuario"
-              labelPlacement="floating"
-              placeholder="Ingrese su nombre de usuario">
-            </ion-input>
-          </ion-item>
+        <!-- Formulario agrupado -->
+        <form (ngSubmit)="registrar()" #formRegistro="ngForm">
 
-          <ion-item>
-            <ion-input
-              [(ngModel)]="user.email"
-              label="Correo"
-              labelPlacement="floating"
-              placeholder="Ingrese su correo electrónico">
-            </ion-input>
-          </ion-item>
+          <ion-list>
 
-          <ion-item>
-            <ion-input
-              type="password"
-              [(ngModel)]="user.password"
-              label="Contraseña"
-              labelPlacement="floating"
-              placeholder="Ingrese su contraseña">
-              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-            </ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-label position="floating">Usuario</ion-label>
+              <br>
+              <ion-input
+                [(ngModel)]="user.username"
+                name="username"
+                placeholder="Ingrese su nombre de usuario"
+                required>
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-input
-              [(ngModel)]="user.fecha_nacimiento"
-              label="Fecha de Nacimiento"
-              labelPlacement="floating"
-              type="date">
-            </ion-input>
-          </ion-item>
 
-          <ion-item>
-            <ion-input
-              [(ngModel)]="user.rut"
-              label="RUT"
-              labelPlacement="floating"
-              placeholder="Ingrese su RUT (Ejemplo: 12345678-9)">
-            </ion-input>
-          </ion-item>
-        </ion-list>
+            <ion-item>
+              <ion-label position="floating">Correo</ion-label>
+              <br>
+              <ion-input
+                [(ngModel)]="user.email"
+                name="email"
+                placeholder="Ingrese su correo electrónico"
+                type="email"
+                required>
+              </ion-input>
+            </ion-item>
 
-        <div *ngIf="burbuja">
-          <ion-item>
-            <ion-label>Registrando</ion-label>
-            <ion-spinner name="bubbles"></ion-spinner>
-          </ion-item>
-        </div>
 
-        <ion-button
-          class="btnregistrar"
-          fill="outline"
-          (click)="registrar()">
-          Registrar
-        </ion-button>
+            <ion-item>
+              <ion-label position="floating">Contraseña</ion-label>
+              <br>
+              <ion-input
+                type="password"
+                [(ngModel)]="user.password"
+                name="password"
+                placeholder="Ingrese su contraseña"
+                required>
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                [(ngModel)]="user.fecha_nacimiento"
+                label="Fecha de Nacimiento"
+                labelPlacement="floating"
+                type="date">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">RUT</ion-label>
+              <br>
+              <ion-input
+                [(ngModel)]="user.rut"
+                name="rut"
+                placeholder="Ingrese su RUT (Ejemplo: 12345678-9)"
+                required>
+              </ion-input>
+            </ion-item>
+          </ion-list>
+
+          <div *ngIf="burbuja">
+            <ion-item>
+              <ion-label>Registrando</ion-label>
+              <ion-spinner name="bubbles"></ion-spinner>
+            </ion-item>
+          </div>
+
+          <ion-button
+            class="btnregistrar"
+            fill="outline"
+            type="submit"
+            [disabled]="formRegistro.invalid">
+            Registrar
+          </ion-button>
+
+        </form>
       </ion-card-content>
     </ion-card>
   </div>
