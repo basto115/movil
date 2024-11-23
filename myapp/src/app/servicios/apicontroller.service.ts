@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class APIControllerService {
-  private baseUrl: string = 'http:/localhost:8100'; 
+  private baseUrl = 'http://localhost:8100';
   constructor(private http: HttpClient) {}
 
   async loadUsers(): Promise<User[]> {
