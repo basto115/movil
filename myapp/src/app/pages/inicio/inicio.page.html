@@ -13,6 +13,7 @@
       <ion-title size="large">Inicio</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <div id="container">
     <ion-card>
       <ion-card-header>
@@ -21,6 +22,21 @@
           <img src="./assets/imgs/tyler.jpg" alt="" class="foto">
         </div>
       </ion-card-header>
+
+      <!-- Comienza la sección del generador de QR -->
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Texto a convertir</ion-label>
+          <ion-input [(ngModel)]="qrCodeData"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" (click)="generateQRCode()">Generar QR</ion-button>
+
+        <div *ngIf="qrCodeResult" class="qr-code-container">
+          <h3>Código QR Generado:</h3>
+          <img [src]="'data:image/svg+xml;base64,' + qrCodeResult" alt="Código QR" />
+        </div>
+      </ion-card-content>
     </ion-card>
   </div>
 </ion-content>
