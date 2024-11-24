@@ -67,6 +67,7 @@
             <ion-item>
               <ion-input
                 [(ngModel)]="user.fecha_nacimiento"
+                name="fecha_nacimiento"
                 label="Fecha de Nacimiento"
                 labelPlacement="floating"
                 type="date">
@@ -95,7 +96,7 @@
           <ion-button
           class="btnregistrar"
           fill="outline"
-          (click)="registrar()">
+          (ngSubmit)="registrar()">
           Registrar
           </ion-button>
 
