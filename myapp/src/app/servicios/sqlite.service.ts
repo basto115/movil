@@ -7,22 +7,28 @@ import { User } from '../models/user.model';
 })
 export class DatabaseService {
   private database!: SQLiteObject;
+  private fallbackStorage: Record<string, User> = {}; // Usando el modelo User
 
   constructor(private sqlite: SQLite) {
     this.initDB(); 
   }
 
+  private isCordovaAvailable(): boolean {
+    return !!window.cordova; // Verifica si Cordova está disponible
+  }
+
   async initDB() {
+    if (!this.isCordovaAvailable()) {
+      console.warn('Cordova no está disponible. Usando IndexedDB como fallback.');
+      return;
+    }
+
     try {
-      
       this.database = await this.sqlite.create({
         name: 'mydatabase.db',
         location: 'default',
       });
-
-      console.log('Base de datos inicializada');
-
-      
+      console.log('Base de datos SQLite inicializada');
       await this.createTables();
       console.log('Tablas creadas correctamente');
     } catch (error) {
@@ -31,8 +37,12 @@ export class DatabaseService {
   }
 
   async createTables() {
+    if (!this.database) {
+      console.warn('Usando almacenamiento de fallback, no se crean tablas.');
+      return;
+    }
+
     try {
-      
       await this.database.executeSql(
         `CREATE TABLE IF NOT EXISTS users (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,20 +60,26 @@ export class DatabaseService {
     }
   }
 
-  addUser(
-    username: string,
-    email: string,
-    password: string,
-    fechaNacimiento: string,
-    rut: string
-  ) {
+  async addUser(user: User) {
+    if (!this.database) {
+      console.warn('SQLite no disponible. Guardando usuario en almacenamiento de fallback.');
+      this.fallbackStorage[user.email] = user;
+      console.log('Usuario guardado en IndexedDB simulada.');
+      return;
+    }
+
     return this.database.executeSql(
-      `INSERT INTO users (username, email, password, fecha_nacimiento, rut) VALUES (?, ?, ?, ?, ?)`,
-      [username, email, password, fechaNacimiento, rut]
+      `INSERT INTO users (username, email, password, fechaNacimiento, rut) VALUES (?, ?, ?, ?, ?)`,
+      [user.username, user.email, user.password, user.fechaNacimiento, user.rut]
     );
   }
 
   async getUsers(): Promise<User[]> {
+    if (!this.database) {
+      console.warn('SQLite no disponible. Obteniendo usuarios del almacenamiento de fallback.');
+      return Object.values(this.fallbackStorage);
+    }
+
     try {
       const data = await this.database.executeSql(`SELECT * FROM users`, []);
       const users: User[] = [];
