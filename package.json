@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ng-qrcode": "^18.0.0"
+  }
+}
