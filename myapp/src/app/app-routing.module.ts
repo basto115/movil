@@ -34,12 +34,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
-    path: '**',
-    loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
-  },  {
     path: 'qr',
     loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
+  },
+  
 
 ];
 
