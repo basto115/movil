@@ -36,7 +36,11 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./error/error/error.module').then( m => m.ErrorPageModule)
+  },  {
+    path: 'qr',
+    loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule)
   },
+
 ];
 
 @NgModule({
