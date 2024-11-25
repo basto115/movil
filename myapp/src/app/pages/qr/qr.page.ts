@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QrPage implements OnInit {
 
+  segment = 'generate';
+  qrText = 'Miau'
+
   constructor() { }
 
   ngOnInit() {

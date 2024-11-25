@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { QrPageRoutingModule } from './qr-routing.module';
 
 import { QrPage } from './qr.page';
+import { QrCodeModule } from 'ng-qrcode';
 
 import { QrCodeModule } from 'ng-qrcode';
 
