@@ -21,3 +21,4 @@ import { QrCodeModule } from 'ng-qrcode';
   declarations: [QrPage]
 })
 export class QrPageModule {}
+
