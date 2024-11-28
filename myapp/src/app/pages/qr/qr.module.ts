@@ -19,7 +19,7 @@ import { BarcodeScanningModalComponent } from './barcode-scanning-modal.componen
     QrPageRoutingModule,
     QrCodeModule
   ],
-  declarations: [QrPage, BarcodeScanningModalComponent]|
+  declarations: [QrPage, BarcodeScanningModalComponent]
 })
 export class QrPageModule {}
 
