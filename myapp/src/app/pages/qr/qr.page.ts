@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component';
 import { LensFacing, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 
@@ -16,8 +16,9 @@ export class QrPage implements OnInit {
   scanResult = '';
 
   constructor(
-  private modalController: ModalController
+  private modalController: ModalController, private platform: Platform
   ) {}
+
 
 
   ngOnInit(): void {
@@ -33,32 +34,32 @@ export class QrPage implements OnInit {
   
 
   async startScan() {
-    const modal = await this.modalController.create({
-    component: BarcodeScanningModalComponent,
-    cssClass: 'barcode-scanning-modal',
-    showBackdrop: false,
-    componentProps: { 
-      formats: [],
-      LensFacing:LensFacing.Back
-    }
+    try {
+      const modal = await this.modalController.create({
+      component: BarcodeScanningModalComponent,
+      cssClass: 'barcode-scanning-modal',
+      showBackdrop: false,
+      componentProps: { 
+        formats: [],
+        LensFacing:LensFacing.Back
+      }
     });
   
     await modal.present();
 
-    const { data } = await modal.onWillDismiss{};
+    const { data } = await modal.onWillDismiss();
 
-    if(data){
+    if (data) {
       this.scanResult = data?.barcode.displayValue;
-
     }
-  
+  } catch (error) {
+    console.error('Error al iniciar el escaneo:', error);
   }
-
+}
 
   
 
 
-  ngOnInit() {
-  }
+  
 
 }
