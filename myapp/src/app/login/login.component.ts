@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticatorService } from '../servicios/authenticator.service'; // Ajusta la ruta según tu estructura
+import { AuthenticatorService } from '../servicios/authenticator.service'; 
 
 @Component({
   selector: 'app-login',
@@ -16,10 +16,10 @@ export class LoginComponent {
     const isLoginSuccessful = await this.authService.loginBDD(this.username, this.password);
     
     if (isLoginSuccessful) {
-      this.router.navigate(['/ruta-protegida']); // Redirige a la ruta protegida si la autenticación es exitosa
+      this.router.navigate(['/ruta-protegida']); 
     } else {
       console.log('Inicio de sesión fallido.');
-      // Aquí podrías mostrar un mensaje de error al usuario
+     
     }
   }
 }

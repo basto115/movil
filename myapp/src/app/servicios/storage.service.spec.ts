@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { StorageService } from './storage.service'; // Asegúrate de que la ruta esté correcta
-import { Storage } from '@ionic/storage-angular'; // Importa el servicio Storage
-import { IonicStorageModule } from '@ionic/storage-angular'; // Importa IonicStorageModule
+import { StorageService } from './storage.service'; 
+import { Storage } from '@ionic/storage-angular'; 
+import { IonicStorageModule } from '@ionic/storage-angular'; 
 
 describe('StorageService', () => {
   let service: StorageService;
@@ -9,19 +9,19 @@ describe('StorageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [IonicStorageModule.forRoot()], // Importa IonicStorageModule
-      providers: [StorageService]  // Proveemos el servicio que depende de Storage
+      imports: [IonicStorageModule.forRoot()], 
+      providers: [StorageService]  
     });
     service = TestBed.inject(StorageService);
-    storage = TestBed.inject(Storage); // Asegúrate de que Storage está inyectado
+    storage = TestBed.inject(Storage); 
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy(); // Verifica que tu servicio se ha creado correctamente
+    expect(service).toBeTruthy(); 
   });
 
   it('should have Storage injected', () => {
-    expect(storage).toBeTruthy(); // Verifica que el servicio Storage fue correctamente inyectado
+    expect(storage).toBeTruthy(); 
   });
 });
 

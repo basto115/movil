@@ -7,14 +7,14 @@ import { User } from '../models/user.model';
 })
 export class DatabaseService {
   private database!: SQLiteObject;
-  private fallbackStorage: Record<string, User> = {}; // Usando el modelo User
+  private fallbackStorage: Record<string, User> = {}; 
 
   constructor(private sqlite: SQLite) {
     this.initDB(); 
   }
 
   private isCordovaAvailable(): boolean {
-    return !!window.cordova; // Verifica si Cordova está disponible
+    return !!window.cordova; 
   }
 
   async initDB() {
