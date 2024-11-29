@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthenticatorService {
     try {
       console.log('Intentando autenticación...');
       const res = await this.storage.get(user);
-      if (res && res.password === pass) {
+      if (res && bcrypt.compareSync(pass, res.password)) {
         this.connectionStatus = true;
         console.log('Autenticación exitosa, estado actualizado:', this.connectionStatus);
         return true;
