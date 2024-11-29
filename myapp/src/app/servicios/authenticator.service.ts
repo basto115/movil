@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import * as bcrypt from 'bcryptjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import * as bcrypt from 'bcryptjs';
 export class AuthenticatorService {
   private connectionStatus: boolean = false;
 
-  constructor(private storage: StorageService) {}
+  constructor(private storage: StorageService, private http: HttpClient) {}
 
   async loginBDD(user: string, pass: string): Promise<boolean> {
     try {
@@ -40,7 +41,7 @@ export class AuthenticatorService {
 
   async registrar(user: { username: string; password: string }): Promise<boolean> {
     try {
-      const res = await this.storage.set(user.username, user);
+      const res = await this.storage.set(user.username, user);//const response = await this.http.post('sqlite.service.ts', user).toPromise(); //no tengo idea cual es lol
       return res !== null;
     } catch (error) {
       console.error('Error en el registro:', error);
