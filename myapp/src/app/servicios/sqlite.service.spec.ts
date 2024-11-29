@@ -6,7 +6,13 @@ describe('SqliteService', () => {
   let service: DatabaseService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+
+    TestBed.configureTestingModule({
+      providers: [
+        DatabaseService,
+        SQLite
+      ],
+    });
     service = TestBed.inject(DatabaseService);
   });
 
