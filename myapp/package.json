@@ -27,6 +27,8 @@
     "@capacitor-mlkit/barcode-scanning": "^7.0.0-next.2",
     "@capacitor/android": "6.1.2",
     "@capacitor/app": "6.0.1",
+    "@capacitor/browser": "^6.0.4",
+    "@capacitor/clipboard": "^6.0.2",
     "@capacitor/core": "6.1.2",
     "@capacitor/haptics": "6.0.1",
     "@capacitor/keyboard": "6.0.2",
@@ -40,7 +42,7 @@
     "ionicons": "^7.0.0",
     "json-server": "^1.0.0-beta.3",
     "ng-qrcode": "^18.0.0",
-    "ng2-validation": "^4.2.0",
+    "ng2-validation": "^3.9.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

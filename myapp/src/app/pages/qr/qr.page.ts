@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, Platform } from '@ionic/angular';
+import { ModalController, Platform, ToastController } from '@ionic/angular';
 import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component';
 import { LensFacing, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
+import { Clipboard } from '@capacitor/clipboard';
+import { Browser } from '@capacitor/browser';
+
 
 @Component({
   selector: 'app-qr',
@@ -16,7 +19,8 @@ export class QrPage implements OnInit {
   scanResult = '';
 
   constructor(
-  private modalController: ModalController, private platform: Platform
+  private modalController: ModalController, private platform: Platform,
+  private toastController: ToastController
   ) {}
 
 
@@ -60,6 +64,37 @@ export class QrPage implements OnInit {
   
 
 
+writeToClipboard = async () => {
+  await Clipboard.write({
+    string: this.scanResult
+  });
+
+
+    const toast = await this.toastController.create({
+      message: 'Copiado al portapapeles',
+      duration: 1000,
+      color: 'tertiary',
+      icon: 'clipboard-outline',
+      position: 'middle'
+    });
+    toast.present();
+};
+
+
+
+
+ openCapacitorSite = async () => {
+
+  let url = this.scanResult;
   
+  if(!['https://'].includes(this.scanResult)) url = 'https://' + this.scanResult 
+
+  await Browser.open({ url });
+};
+  
+isUrl(){
+  let regex = /\.(com|net|io|me|crypto|ai)\b/i;
+  return regex.test(this.scanResult);
+}
 
 }
