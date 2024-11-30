@@ -41,7 +41,7 @@ export class AuthenticatorService {
 
   async registrar(user: { username: string; password: string }): Promise<boolean> {
     try {
-      const res = await this.storage.set(user.username, user);//const response = await this.http.post('sqlite.service.ts', user).toPromise(); //no tengo idea cual es lol
+      const res = await this.storage.set(user.username, user); //const response = await this.http.post('sqlite.service.ts', user).toPromise(); //no tengo idea cual es lol
       return res !== null;
     } catch (error) {
       console.error('Error en el registro:', error);
