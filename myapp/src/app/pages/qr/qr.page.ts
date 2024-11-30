@@ -87,7 +87,7 @@ writeToClipboard = async () => {
 
   let url = this.scanResult;
   
-  if(!['https://'].includes(this.scanResult)) url = 'https://' + this.scanResult 
+  if(!['https://'].includes(this.scanResult)) url = 'https://' + this.scanResult; 
 
   await Browser.open({ url });
 };
